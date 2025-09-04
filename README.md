@@ -1,12 +1,8 @@
-# [PackageName]
+# Loading System
 
-## Summary
-
-[...]
+Dynamically load Game Objects into the Scene using Addressables
 
 ## How To Use
-
-### Using [...]
 
 ## Installation
 
