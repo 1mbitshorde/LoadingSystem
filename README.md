@@ -1,6 +1,6 @@
 # Loading System
 
-Dynamically load Game Objects into the Scene using Addressables
+Dynamically load Game Objects into the Scene using Addressables.
 
 ## How To Use
 
