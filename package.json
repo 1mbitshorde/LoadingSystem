@@ -1,14 +1,13 @@
 {
   "name": "com.1mbitshorde.loading-system",
   "displayName": "1M Bits Horde-Loading System",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "unity": "6000.1",
   "description": "Dynamically load objects into the scene.",
   "keywords": [
     "Addressables",
     "Loading"
   ],
-  "dependencies": {},
   "homepage": "https://github.com/1mbitshorde/LoadingSystem#readme",
   "repository": {
     "type": "git",
