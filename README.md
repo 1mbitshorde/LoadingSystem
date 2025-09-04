@@ -4,6 +4,26 @@ Dynamically load Game Objects into the Scene using Addressables.
 
 ## How To Use
 
+Make surre the prefab you want to load is an Addressable one:
+
+![Addressable Prefab](/Docs~/AddressablePrefab.png)
+
+Place into your scene a GameObject that will load this prefab, attaching the [AddressablesLoader](/Runtime/AddressablesLoader.cs) component on it.
+
+![Addressables Loader](/Docs~/AddressablesLoader.png)
+
+Set the **Prefab** and **Place** fields on it. Don't forget to add any 3D collider as a trigger on this GameObject (a warning log will be fired if forget).
+
+Inside your Player or Camera GameObject, put a (Loader)[/Runtime/Loader.cs] component on it.
+
+![Loader](/Docs~/Loader.png)
+
+Don't forget to set the Collision field and add any 3D Collider.
+
+The Collider should also be a trigger and it'll load any [ILoadable](/Runtime/ILoadable.cs) implementation (like AddressablesLoader) when entering on its area; unload when exiting.
+
+![Preview](/Docs~/Preview.gif)
+
 ## Installation
 
 ### Using the Git URL
