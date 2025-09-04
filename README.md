@@ -12,9 +12,9 @@ Place into your scene a GameObject that will load this prefab, attaching the [Ad
 
 ![Addressables Loader](/Docs~/AddressablesLoader.png)
 
-Set the **Prefab** and **Place** fields on it. Don't forget to add any 3D collider as a trigger on this GameObject (a warning log will be fired if forget).
+Set the **Prefab** and **Place** fields on it. Don't forget to add any 3D collider as a trigger on this GameObject (a warning log will be fired if you forget).
 
-Inside your Player or Camera GameObject, put a (Loader)[/Runtime/Loader.cs] component on it.
+Inside your Player or Camera GameObject, put a [Loader](/Runtime/Loader.cs) component on it.
 
 ![Loader](/Docs~/Loader.png)
 
