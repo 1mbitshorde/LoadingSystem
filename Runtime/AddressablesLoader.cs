@@ -15,6 +15,8 @@ namespace OneM.LoadingSystem
         [SerializeField, Tooltip("The place where your prefab will be loaded")]
         private Transform place;
 
+        public bool IsLoading { get; private set; }
+
         private GameObject instance;
 
         private void Reset()
@@ -26,16 +28,20 @@ namespace OneM.LoadingSystem
         public async Awaitable LoadAsync()
         {
             var operation = Addressables.InstantiateAsync(prefab, place);
+
+            IsLoading = true;
             instance = await operation.Task;
+            IsLoading = false;
+
             ILoadable.Load(instance);
         }
 
-        public void Unload()
+        public bool Unload()
         {
-            if (instance == null) return;
+            if (instance == null || IsLoading) return false;
 
             ILoadable.Unload(instance);
-            Addressables.ReleaseInstance(instance);
+            return Addressables.ReleaseInstance(instance);
         }
     }
 }

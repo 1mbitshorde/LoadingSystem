@@ -17,15 +17,27 @@ namespace OneM.LoadingSystem
         public static event Action<GameObject> OnUnloaded;
 
         /// <summary>
+        /// Wether is currently loading an instance or not.
+        /// </summary>
+        bool IsLoading { get; }
+
+        /// <summary>
+        /// Whether can load a new instance or not.
+        /// </summary>
+        /// <returns>False if it's currently loading an instance.</returns>
+        bool CanLoad() => !IsLoading;
+
+        /// <summary>
         /// Loads an instance asynchronously.
         /// </summary>
         /// <returns></returns>
         Awaitable LoadAsync();
 
         /// <summary>
-        /// Unloads the previous instance (if any).
+        /// Tries to unload the previous instance (if any).
         /// </summary>
-        void Unload();
+        /// <returns>Whether could unload the previous instance.</returns>
+        bool Unload();
 
         protected static void Load(GameObject instance) => OnLoaded?.Invoke(instance);
         protected static void Unload(GameObject instance) => OnUnloaded?.Invoke(instance);

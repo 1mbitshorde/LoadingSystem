@@ -21,14 +21,14 @@ namespace OneM.LoadingSystem
         private void OnTriggerEnter(Collider other) => TryAddLoadable(other);
         private void OnTriggerExit(Collider other) => TryRemoveLoadbale(other);
 
-        private void TryAddLoadable(Collider collider)
+        private async void TryAddLoadable(Collider collider)
         {
             if (!IsInsideCollisions(collider.gameObject.layer)) return;
 
             var hasLoadable = collider.TryGetComponent(out ILoadable loadable);
-            if (!hasLoadable) return;
+            if (!hasLoadable || !loadable.CanLoad() || loadables.Contains(loadable)) return;
 
-            loadable.LoadAsync();
+            await loadable.LoadAsync();
             loadables.Add(loadable);
         }
 
@@ -37,10 +37,10 @@ namespace OneM.LoadingSystem
             if (!IsInsideCollisions(collider.gameObject.layer)) return;
 
             var hasLoadable = collider.TryGetComponent(out ILoadable loadable);
-            if (!hasLoadable) return;
+            if (!hasLoadable || loadable.IsLoading) return;
 
-            loadable.Unload();
-            loadables.Remove(loadable);
+            var wasUnloaded = loadable.Unload();
+            if (wasUnloaded) loadables.Remove(loadable);
         }
 
         internal static void CheckTriggerCollider(GameObject instance)
